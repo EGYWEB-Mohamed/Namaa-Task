@@ -28,7 +28,7 @@
                                 <input type="checkbox" class="form-check-input" id="status" {{ ($subscriber->status) ? 'checked' : '' }} name="status">
                                 <label class="form-check-label" for="status">Active</label>
                             </div>
-                            <button class="btn btn-success w-100 mt-2" type="submit">Save</button>
+                            <button class="btn btn-success w-100 mt-2" type="submit">Update</button>
                         </form>
                     </div>
                 </div>

@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('subscriber', SubscriberController::class);
-Route::apiResource('blog', BlogController::class);
+Route::post('/blog/{blog}',[BlogController::class,'update'])->name('blog.update');
+Route::apiResource('blog', BlogController::class)->except('update');
