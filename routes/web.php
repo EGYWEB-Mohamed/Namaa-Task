@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\SubscriberController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [HomeController::class, 'front'])->name('front');
+
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'confirm' => false,
+]);
+
+
+Route::group(['prefix' => 'admin','middleware' => 'auth:web'], function () {
+    Route::resource('subscriber',SubscriberController::class);
+    Route::resource('blog',BlogController::class);
 });

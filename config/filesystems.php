@@ -1,4 +1,10 @@
 <?php
+/*
+ * Made With ♥ By Mohamed Said (c) 2022
+ * - Github : https://github.com/EGYWEB-Mohamed
+ * - Whatsapp : https://wa.me/+201141173045
+ * - Website : https://msaied.com
+ */
 
 return [
 
@@ -13,7 +19,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    'default' => env('FILESYSTEM_DISK', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,8 +44,8 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path('/'),
+            'url' => env('APP_URL'),
             'visibility' => 'public',
             'throw' => false,
         ],

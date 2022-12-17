@@ -1,4 +1,10 @@
 <?php
+/*
+ * Made With ♥ By Mohamed Said (c) 2022
+ * - Github : https://github.com/EGYWEB-Mohamed
+ * - Whatsapp : https://wa.me/+201141173045
+ * - Website : https://msaied.com
+ */
 
 return [
 
@@ -40,6 +46,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'subscriber' => [
+            'driver' => 'session',
+            'provider' => 'subscribers',
+        ],
     ],
 
     /*
@@ -63,6 +73,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'subscribers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Subscriber::class,
         ],
 
         // 'users' => [
@@ -89,6 +103,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'subscribers' => [
+            'provider' => 'subscribers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
