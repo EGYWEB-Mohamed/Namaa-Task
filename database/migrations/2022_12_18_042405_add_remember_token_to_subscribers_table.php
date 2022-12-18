@@ -14,7 +14,7 @@ return new class extends Migration {
 	public function up()
 	{
 		Schema::table('subscribers', function (Blueprint $table) {
-            $table->string('remember_token',100);
+            $table->string('remember_token',100)->nullable();
 		});
 	}
 
