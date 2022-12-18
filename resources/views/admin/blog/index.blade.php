@@ -19,20 +19,23 @@
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
     <script>
         function deleteRow(url) {
-            $.ajax({
-                type: 'DELETE',
-                url: url,
-                success: function (response) {
-                    getAlert('success',response.message);
-                    window.LaravelDataTables["blog-table"].ajax.reload();
-                },
-                error: function (data){
-                    var errors = data.responseJSON.errors;
-                    $.each(errors,function (k,v){
-                        getAlert('error',v[0]);
-                    })
-                }
-            });
+            if (confirm("Confirm Delete ?") == true) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: url,
+                    success: function (response) {
+                        getAlert('success',response.message);
+                        window.LaravelDataTables["blog-table"].ajax.reload();
+                    },
+                    error: function (data){
+                        var errors = data.responseJSON.errors;
+                        $.each(errors,function (k,v){
+                            getAlert('error',v[0]);
+                        })
+                    }
+                });
+            }
+
         }
     </script>
 @endpush

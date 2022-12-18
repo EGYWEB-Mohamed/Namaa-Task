@@ -6,6 +6,13 @@
  * - Website : https://msaied.com
  */
 
+/*
+ * Made With ♥ By Mohamed Said (c) 2022
+ * - Github : https://github.com/EGYWEB-Mohamed
+ * - Whatsapp : https://wa.me/+201141173045
+ * - Website : https://msaied.com
+ */
+
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
@@ -20,8 +27,9 @@ class BlogController extends Controller
 
     public function index()
     {
-        $blogs = Blog::all();
-        return $this->sendSuccess('Success', BlogResource::collection($blogs));
+        $blogs = Blog::paginate(16);
+//        $html = \View::make('front.blogs.indexCard',compact('blogs'))->render();
+        return BlogResource::collection($blogs);
     }
 
     public function show(Blog $blog)
@@ -41,6 +49,7 @@ class BlogController extends Controller
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('uploads');
         }
+        $data['status'] = $request->has('status');
         $blog->update($data);
         return $this->sendSuccess('Updated Successfully', BlogResource::make($blog));
     }

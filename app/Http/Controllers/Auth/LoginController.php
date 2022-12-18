@@ -1,4 +1,10 @@
 <?php
+/*
+ * Made With ♥ By Mohamed Said (c) 2022
+ * - Github : https://github.com/EGYWEB-Mohamed
+ * - Whatsapp : https://wa.me/+201141173045
+ * - Website : https://msaied.com
+ */
 
 namespace App\Http\Controllers\Auth;
 
@@ -27,7 +33,7 @@ class LoginController extends Controller
      * Where to redirect users after login.
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::Admin;
 
     /**
      * Create a new controller instance.
@@ -36,25 +42,9 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('guest:subscriber')->except('logout');
     }
-
-    public function showAdminLoginForm()
+    protected function authenticated(Request $request, $user)
     {
-        return view('auth.login');
-    }
-
-    public function adminLogin(Request $request)
-    {
-        $this->validate($request, [
-            'username' => 'required',
-            'password' => 'required|min:6',
-        ]);
-
-        if (Auth::guard('subscriber')->attempt($request->only(['email', 'password']), $request->get('remember'))) {
-            return redirect()->intended('/admin/dashboard');
-        }
-
-        return back()->withInput($request->only('username', 'remember'));
+        return redirect(route('subscriber.index'));
     }
 }

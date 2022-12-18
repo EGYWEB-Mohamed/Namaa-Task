@@ -21,21 +21,11 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            @auth()
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {{ (request()->is(['*/subscriber/*','*/subscriber'])) ? 'active' : '' }}" href="{{ route('subscriber.index') }}">Subscribers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ (request()->is(['*/blog/*','*/blog'])) ? 'active' : '' }}" href="{{ route('blog.index') }}">Blogs</a>
-                    </li>
-                </ul>
-            @endauth
 
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
+                <!-- Authentication Links -->
                 @guest('subscriber')
                     @if (Route::has('login'))
                         <li class="nav-item">
@@ -65,7 +55,7 @@
                 @endguest
 
 
-                @guest()
+                @guest('web')
                     @if (Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Admin Login') }}</a>
@@ -100,7 +90,6 @@
 
 <main class="py-4">
     @yield('content')
-
 </main>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

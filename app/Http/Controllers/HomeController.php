@@ -1,4 +1,10 @@
 <?php
+/*
+ * Made With ♥ By Mohamed Said (c) 2022
+ * - Github : https://github.com/EGYWEB-Mohamed
+ * - Whatsapp : https://wa.me/+201141173045
+ * - Website : https://msaied.com
+ */
 
 namespace App\Http\Controllers;
 
@@ -7,15 +13,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
